@@ -165,10 +165,10 @@ footer{margin-top:14px;color:var(--muted);font-size:11px;line-height:1.75}
       <div class="chart-wrap"><canvas id="cDev"></canvas></div>
     </div>
     <div class="card">
-      <div class="card-head"><h2>内訳サマリー</h2><span class="note">消化 / 表示 / クリック / CV・CPC</span></div>
+      <div class="card-head"><h2>内訳サマリー</h2><span class="note">消化 / 表示回数 / クリック / CPC / CV / CPA</span></div>
       <div class="tbl-wrap">
         <table>
-          <thead><tr><th>区分</th><th>消化額</th><th>クリック</th><th>CPC</th><th>CV</th></tr></thead>
+          <thead><tr><th>区分</th><th>消化額</th><th>表示回数</th><th>クリック</th><th>CPC</th><th>CV</th><th>CPA</th></tr></thead>
           <tbody id="tbBd"></tbody>
         </table>
       </div>
@@ -183,9 +183,9 @@ footer{margin-top:14px;color:var(--muted);font-size:11px;line-height:1.75}
       <div class="chart-wrap"><canvas id="cCampM"></canvas></div>
     </div>
     <div class="card">
-      <div class="card-head"><h2>広告セット別・バナー別 TOP</h2><span class="note">消化 / クリック / CPC / CV</span></div>
+      <div class="card-head"><h2>広告セット別・バナー別 TOP</h2><span class="note">消化 / 表示回数 / クリック / CPC / CV / CPA</span></div>
       <div class="tbl-wrap">
-        <table><thead><tr><th>区分</th><th>消化額</th><th>クリック</th><th>CPC</th><th>CV</th></tr></thead>
+        <table><thead><tr><th>区分</th><th>消化額</th><th>表示回数</th><th>クリック</th><th>CPC</th><th>CV</th><th>CPA</th></tr></thead>
           <tbody id="tbCab"></tbody>
         </table>
       </div>
@@ -336,11 +336,12 @@ function build(){
     options:baseOpts({indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'消化 '+yen(c.parsed.x)}}},scales:{x:{ticks:{color:t.text,callback:v=>'¥'+(v/1000)+'k'},grid:{color:t.grid}},y:{ticks:{color:t.text},grid:{display:false}}}})}));
 }
 
+function bdRow(label,x){const cpc=x[3]>0?x[1]/x[3]:null,cpa=x[4]>0?x[1]/x[4]:null;
+  return `<tr><td>${label}｜${x[0]}</td><td>${yen(x[1])}</td><td>${num(x[2])}</td><td>${num(x[3])}</td><td>${yen(cpc)}</td><td>${num(x[4])}</td><td>${yen(cpa)}</td></tr>`;}
 function renderBd(){
   const el=document.getElementById('tbBd'); if(!el) return;
   const out=[];
-  const push=(label,arr,n)=>(arr||[]).slice(0,n).forEach(x=>{const cpc=x[3]>0?x[1]/x[3]:null;
-    out.push(`<tr><td>${label}｜${x[0]}</td><td>${yen(x[1])}</td><td>${num(x[3])}</td><td>${yen(cpc)}</td><td>${num(x[4])}</td></tr>`);});
+  const push=(label,arr,n)=>(arr||[]).slice(0,n).forEach(x=>out.push(bdRow(label,x)));
   push('デバイス',D.devarr,10); push('地域',D.regtop,5); push('年齢性別',D.agtop,5);
   el.innerHTML=out.join('');
 }
@@ -348,8 +349,7 @@ function renderBd(){
 function renderCab(){
   const el=document.getElementById('tbCab'); if(!el) return;
   const out=[];
-  const push=(label,arr,n)=>(arr||[]).slice(0,n).forEach(x=>{const cpc=x[3]>0?x[1]/x[3]:null;
-    out.push(`<tr><td>${label}｜${x[0]}</td><td>${yen(x[1])}</td><td>${num(x[3])}</td><td>${yen(cpc)}</td><td>${num(x[4])}</td></tr>`);});
+  const push=(label,arr,n)=>(arr||[]).slice(0,n).forEach(x=>out.push(bdRow(label,x)));
   push('広告セット',D.adsettop,6); push('バナー',D.bannertop,8);
   el.innerHTML=out.join('');
 }
