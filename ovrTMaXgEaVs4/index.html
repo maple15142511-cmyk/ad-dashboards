@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>トゥモローマーケティング オーバービュー</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#eef1f7; --panel:#ffffff; --sub:#f3f6fb; --line:#e2e7f0; --line2:#eef1f6;
+  --fg:#1b2430; --muted:#6a7483; --faint:#9aa4b2;
+  --accent:#2f6fed; --accent-soft:#eaf1ff;
+  --ok:#15934e; --ok-bg:#e6f6ec; --warn:#c77700; --warn-bg:#fbf0dc; --crit:#d53b3b; --crit-bg:#fbe7e7;
+  --idle:#8a94a3; --idle-bg:#eef1f5; --barbg:#e8edf5;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#11151c; --panel:#171d26; --sub:#1b222c; --line:#28303c; --line2:#1f2630;
+  --fg:#e7ecf3; --muted:#9aa6b4; --faint:#6b7685;
+  --accent:#6ea0ff; --accent-soft:#1b2740;
+  --ok:#49c47d; --ok-bg:#133022; --warn:#e0a54a; --warn-bg:#352a15; --crit:#f07373; --crit-bg:#3a1e1e;
+  --idle:#7d8794; --idle-bg:#20262f; --barbg:#232b36; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#11151c; --panel:#171d26; --sub:#1b222c; --line:#28303c; --line2:#1f2630;
+  --fg:#e7ecf3; --muted:#9aa6b4; --faint:#6b7685;
+  --accent:#6ea0ff; --accent-soft:#1b2740;
+  --ok:#49c47d; --ok-bg:#133022; --warn:#e0a54a; --warn-bg:#352a15; --crit:#f07373; --crit-bg:#3a1e1e;
+  --idle:#7d8794; --idle-bg:#20262f; --barbg:#232b36; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font-family:"Noto Sans JP",-apple-system,"Segoe UI",sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1240px;margin:0 auto;padding:22px 16px 56px}
+.tnum{font-variant-numeric:tabular-nums}
+h1{font-size:19px;font-weight:700;margin:0 0 3px}
+.sub1{color:var(--muted);font-size:12.5px;margin-bottom:16px}
+.sub1 b{color:var(--fg);font-weight:700}
+.note{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;padding:11px 14px;font-size:12.5px;color:var(--muted);margin-bottom:16px}
+.note b{color:var(--fg)}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.seg{display:inline-flex;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:3px;gap:3px}
+.seg button{border:0;background:transparent;color:var(--muted);font:inherit;font-weight:700;font-size:12.5px;padding:7px 13px;border-radius:7px;cursor:pointer}
+.seg button.on{background:var(--accent);color:#fff}
+.seg.sub-seg button.on{background:var(--fg)}
+.lbl{font-size:11.5px;color:var(--faint);font-weight:700}
+.spacer{flex:1}
+.summary{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--muted)}
+.pill .dot{width:8px;height:8px;border-radius:50%}
+.pill.crit{color:var(--crit);border-color:var(--crit-bg);background:var(--crit-bg)} .pill.crit .dot{background:var(--crit)}
+.pill.warn{color:var(--warn);border-color:var(--warn-bg);background:var(--warn-bg)} .pill.warn .dot{background:var(--warn)}
+.pill.ok{color:var(--ok);border-color:var(--ok-bg);background:var(--ok-bg)} .pill.ok .dot{background:var(--ok)}
+.pill.idle .dot{background:var(--idle)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}
+thead th{position:sticky;top:0;background:var(--panel);z-index:2}
+th,td{text-align:right;padding:9px 12px;white-space:nowrap;border-bottom:1px solid var(--line2)}
+th{font-size:11px;font-weight:700;color:var(--faint);letter-spacing:.3px;cursor:pointer;user-select:none}
+th.l,td.l{text-align:left}
+tr.row:hover{background:var(--accent-soft)}
+tr.row.sevcrit td:first-child{box-shadow:inset 3px 0 0 var(--crit)}
+tr.row.sevwarn td:first-child{box-shadow:inset 3px 0 0 var(--warn)}
+tr.row.sevok td:first-child{box-shadow:inset 3px 0 0 var(--ok)}
+tr.row.sevidle td:first-child{box-shadow:inset 3px 0 0 var(--idle)}
+.acc{font-weight:700;color:var(--fg);text-decoration:none}
+.acc:hover{color:var(--accent)}
+.lk{font-size:11px;color:var(--accent);text-decoration:none;margin-left:8px}
+.lk.o{color:var(--muted)}
+.fresh{font-size:11px;color:var(--muted)} .fresh.stale{color:var(--crit)}
+.money{font-weight:500}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.chip .d{width:7px;height:7px;border-radius:50%}
+.chip.crit{background:var(--crit-bg);color:var(--crit)} .chip.crit .d{background:var(--crit)}
+.chip.warn{background:var(--warn-bg);color:var(--warn)} .chip.warn .d{background:var(--warn)}
+.chip.ok{background:var(--ok-bg);color:var(--ok)} .chip.ok .d{background:var(--ok)}
+.chip.idle{background:var(--idle-bg);color:var(--idle)} .chip.idle .d{background:var(--idle)}
+.dev{font-size:11px;color:var(--muted);margin-left:2px}
+.pace{display:flex;align-items:center;gap:9px;justify-content:flex-end}
+.pace .pct{min-width:34px;text-align:right;font-weight:700}
+.bar{position:relative;width:120px;height:9px;background:var(--barbg);border-radius:5px;overflow:hidden;flex:none}
+.bar>span{position:absolute;left:0;top:0;bottom:0;border-radius:5px}
+.bar .ideal{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--fg);opacity:.5}
+.land{font-weight:700}
+.dash{color:var(--faint)}
+.board table{min-width:max-content;font-size:12.5px}
+.board th,.board td{text-align:center;border-bottom:1px solid var(--line2);border-right:1px solid var(--line2);padding:9px 12px}
+.board thead th{min-width:120px;border-bottom:2px solid var(--line)}
+.board thead .acccol a{color:var(--fg);text-decoration:none;font-weight:700} .board thead .acccol a:hover{color:var(--accent)}
+.board tbody th{text-align:left;position:sticky;left:0;background:var(--panel);color:var(--faint);font-size:11px;font-weight:700;min-width:88px;z-index:1;border-right:2px solid var(--line)}
+.board td.ov{color:var(--crit);font-weight:700} .board td.un{color:var(--warn);font-weight:700}
+.board td.good{color:var(--ok);font-weight:700} .board td.idle{color:var(--idle)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:12px;font-size:11.5px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.foot{color:var(--faint);font-size:11px;margin-top:16px;line-height:1.7}
+.hide{display:none}
+@media(max-width:640px){.wrap{padding:16px 12px 48px}.bar{width:84px}.board thead th{min-width:106px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>トゥモローマーケティング オーバービュー</h1>
+  <div class="sub1"><b id="asof"></b> ／ 各社の月予算に対する消化・進捗率と日次ペースを一覧。</div>
+  <div class="note" id="note"></div>
+  <div class="toolbar">
+    <div class="seg" role="tablist">
+      <button id="btnA" class="on" onclick="setView('A')">一覧（表）</button>
+      <button id="btnB" onclick="setView('B')">横ボード</button>
+    </div>
+    <span class="lbl" id="sortLbl">並び</span>
+    <div class="seg sub-seg" id="sortSeg">
+      <button id="mPace" class="on" onclick="setMode('pace')">ペース順</button>
+      <button id="mName" onclick="setMode('name')">社名順</button>
+    </div>
+    <div class="spacer"></div>
+    <div class="summary" id="summary"></div>
+  </div>
+  <div id="viewA" class="panel scroll">
+    <table id="tblA">
+      <thead><tr>
+        <th class="l">アカウント</th>
+        <th>最新日</th>
+        <th>月予算</th>
+        <th>当月消化</th>
+        <th>消化率（予算に対する進捗）</th>
+        <th>日次ペース判定</th>
+        <th>着地見込</th>
+        <th>CV</th>
+        <th>CPA</th>
+      </tr></thead>
+      <tbody id="bodyA"></tbody>
+    </table>
+  </div>
+  <div id="viewB" class="panel scroll board hide"><table id="tblB"></table></div>
+  <div class="legend">
+    <span><i style="background:var(--crit)"></i>暴発／大幅不足（±30%超）</span>
+    <span><i style="background:var(--warn)"></i>やや過多／不足（±15〜30%）</span>
+    <span><i style="background:var(--ok)"></i>適正（±15%以内）</span>
+    <span><i style="background:var(--idle)"></i>休止／予算未設定</span>
+    <span>｜ 消化率バーの縦線 = 本日時点の理想消化ライン</span>
+  </div>
+  <div class="foot" id="foot"></div>
+</div>
+<script>
+const META={"cur_month": "2026-11", "asof": "2026-11-15", "asof_day": 15, "days_in_month": 30, "generated": "2026-11-18"};
+const A=[{"name": "和田町", "curl": "https://maple15142511-cmyk.github.io/ad-dashboards/WhcTvXKpnkj0/", "ourl": "https://maple15142511-cmyk.github.io/ad-dashboards/opsNJesiN0eeb/", "latest": "2026-11-15", "budget": 300000, "cost": 153553, "cv": 0}, {"name": "モビカリ", "curl": "https://maple15142511-cmyk.github.io/ad-dashboards/z3Gw0oAythVd/", "ourl": "https://maple15142511-cmyk.github.io/ad-dashboards/opsVrDBjRUp4W/", "latest": "2026-11-15", "budget": 914000, "cost": 637205, "cv": 73}, {"name": "奄美イノベーション(MIJORA)", "curl": "https://maple15142511-cmyk.github.io/ad-dashboards/3eDGNK0SCS2v/", "ourl": "https://maple15142511-cmyk.github.io/ad-dashboards/ops2qZjsERLDV/", "latest": "2026-11-15", "budget": 250000, "cost": 59466, "cv": 0}, {"name": "奄美イノベーション(採用)", "curl": "https://maple15142511-cmyk.github.io/ad-dashboards/oK4wnQndZsUb/", "ourl": "https://maple15142511-cmyk.github.io/ad-dashboards/opsMRWnn8iH7q/", "latest": "2026-11-15", "budget": 50000, "cost": 24096, "cv": 86}, {"name": "別荘_用安", "curl": "https://maple15142511-cmyk.github.io/ad-dashboards/qvDv9ShL5ej5/", "ourl": "https://maple15142511-cmyk.github.io/ad-dashboards/opsqy277dFzW8/", "latest": "2026-11-15", "budget": 0, "cost": 103021, "cv": 0}, {"name": "andモビリティ加盟店", "curl": "https://maple15142511-cmyk.github.io/ad-dashboards/JB1s9SnGkcgm/", "ourl": "https://maple15142511-cmyk.github.io/ad-dashboards/opspU13UDcv5G/", "latest": "2026-11-15", "budget": 0, "cost": 103610, "cv": 16}];
+const yen=n=>(n==null?'—':'¥'+Math.round(n).toLocaleString('ja-JP'));
+const idealPct=(META.asof_day/META.days_in_month)*100;
+function classify(budget,cost,latest){
+  const running=latest.slice(0,7)===META.cur_month;
+  if(!running) return {sev:'idle',rank:-1,label:'休止'};
+  if(!budget) return {sev:'idle',rank:-1,label:'予算未設定',nobudget:true};
+  const ideal=budget*(META.asof_day/META.days_in_month);
+  const dev=((cost/ideal)-1)*100, ad=Math.abs(dev), over=dev>0;
+  let sev,label;
+  if(ad>30){sev='crit';label=over?'暴発':'大幅不足';}
+  else if(ad>15){sev='warn';label=over?'過多':'不足';}
+  else{sev='ok';label='適正';}
+  return {sev,rank:sev==='crit'?3:sev==='warn'?2:1,label,dev,over};
+}
+A.forEach(a=>{
+  a.cpa=a.cv>0?a.cost/a.cv:null;
+  a.pace=a.budget>0?a.cost/a.budget*100:null;
+  a.proj=META.asof_day>0?a.cost/META.asof_day*META.days_in_month:0;
+  a.projpace=a.budget>0?a.proj/a.budget*100:null;
+  a.c=classify(a.budget,a.cost,a.latest);
+});
+document.getElementById('asof').textContent=`${META.cur_month}　${META.asof_day}日時点（月内 残り${META.days_in_month-META.asof_day}日）／ 生成 ${META.generated}`;
+document.getElementById('note').innerHTML='<b>見方:</b> 消化率バーの縦線＝本日の理想消化ライン。右の「日次ペース判定」が<b>暴発</b>（使いすぎ）／<b>大幅不足</b>（出なさすぎ）を示します。'+
+  '「ペース順」で要確認の会社が上に集まります。今月消化ゼロは「休止」、月予算が未登録は「予算未設定」として判定から外しています。';
+const cnt={crit:0,warn:0,ok:0,idle:0}; A.forEach(a=>cnt[a.c.sev]++);
+document.getElementById('summary').innerHTML=
+  `<span class="pill crit"><span class="dot"></span>要確認 ${cnt.crit}</span>`+
+  `<span class="pill warn"><span class="dot"></span>注意 ${cnt.warn}</span>`+
+  `<span class="pill ok"><span class="dot"></span>適正 ${cnt.ok}</span>`+
+  `<span class="pill idle"><span class="dot"></span>休止・未設定 ${cnt.idle}</span>`;
+function devTxt(c){return c.dev==null?'':`<span class="dev">${c.dev>0?'+':''}${c.dev.toFixed(0)}%</span>`;}
+function barCell(a){
+  const c=a.c;
+  if(c.sev==='idle'||c.nobudget) return `<div class="pace"><span class="pct dash">—</span><div class="bar"><span style="width:0"></span></div></div>`;
+  const col=c.sev==='crit'?'var(--crit)':c.sev==='warn'?'var(--warn)':'var(--ok)';
+  return `<div class="pace"><span class="pct">${a.pace.toFixed(0)}%</span>`+
+    `<div class="bar"><span style="width:${Math.min(a.pace,100)}%;background:${col}"></span>`+
+    `<span class="ideal" style="left:${Math.min(idealPct,100)}%"></span></div></div>`;
+}
+function landCell(a){
+  const c=a.c; if(c.sev==='idle'||c.nobudget) return '<span class="dash">—</span>';
+  const col=a.projpace>=115?'var(--crit)':a.projpace<85?'var(--warn)':'var(--ok)';
+  return `<span class="land" style="color:${col}">${a.projpace.toFixed(0)}%</span>`;
+}
+let mode='pace';
+function sortedA(){
+  const arr=[...A];
+  if(mode==='name') return arr.sort((x,y)=>x.name.localeCompare(y.name,'ja'));
+  return arr.sort((x,y)=>(y.c.rank-x.c.rank)||((y.c.dev==null?-999:Math.abs(y.c.dev))-(x.c.dev==null?-999:Math.abs(x.c.dev)))||(y.cost-x.cost));
+}
+function renderA(){
+  const rows=sortedA().map(a=>{
+    const stale=a.latest.slice(0,7)!==META.cur_month;
+    const links=`<a class="lk" href="${a.curl}" target="_blank" rel="noopener">共有用↗</a>`+(a.ourl?`<a class="lk o" href="${a.ourl}" target="_blank" rel="noopener">運用↗</a>`:'');
+    const chip=`<span class="chip ${a.c.sev}"><span class="d"></span>${a.c.label}</span>${devTxt(a.c)}`;
+    return `<tr class="row sev${a.c.sev}">`+
+      `<td class="l"><a class="acc" href="${a.curl}" target="_blank" rel="noopener">${a.name}</a>${links}</td>`+
+      `<td><span class="fresh ${stale?'stale':''}">${a.latest?a.latest.slice(5):'—'}</span></td>`+
+      `<td class="money tnum">${a.budget?yen(a.budget):'<span class="dash">未設定</span>'}</td>`+
+      `<td class="money tnum">${yen(a.cost)}</td>`+
+      `<td>${barCell(a)}</td>`+
+      `<td style="text-align:left">${chip}</td>`+
+      `<td class="tnum">${landCell(a)}</td>`+
+      `<td class="tnum">${a.cv?a.cv:'<span class="dash">0</span>'}</td>`+
+      `<td class="tnum">${a.cpa?yen(a.cpa):'<span class="dash">—</span>'}</td></tr>`;
+  }).join('');
+  document.getElementById('bodyA').innerHTML=rows;
+}
+function cellCls(a){const c=a.c;if(c.sev==='idle'||c.nobudget)return'idle';return c.sev==='ok'?'good':(c.over?'ov':'un');}
+function renderB(){
+  const order=[...A].sort((x,y)=>(y.c.rank-x.c.rank)||((y.c.dev==null?-999:Math.abs(y.c.dev))-(x.c.dev==null?-999:Math.abs(x.c.dev))));
+  const head='<thead><tr><th></th>'+order.map(a=>`<th class="acccol"><a href="${a.curl}" target="_blank" rel="noopener">${a.name}</a></th>`).join('')+'</tr></thead>';
+  const row=(label,fn)=>`<tr><th>${label}</th>`+order.map(fn).join('')+'</tr>';
+  const body='<tbody>'+
+    row('最新日',a=>{const s=a.latest.slice(0,7)!==META.cur_month;return `<td class="${s?'idle':''}">${a.latest?a.latest.slice(5):'—'}</td>`;})+
+    row('月予算',a=>`<td class="tnum">${a.budget?yen(a.budget):'<span style="color:var(--idle)">未設定</span>'}</td>`)+
+    row('当月消化',a=>`<td class="tnum">${yen(a.cost)}</td>`)+
+    row('消化率',a=>`<td class="tnum ${a.pace==null?'idle':''}">${a.pace==null?'—':a.pace.toFixed(0)+'%'}</td>`)+
+    row('日次ペース',a=>`<td class="${cellCls(a)}">${a.c.label}${a.c.dev!=null?`<br><span style="font-weight:400;font-size:11px">${a.c.dev>0?'+':''}${a.c.dev.toFixed(0)}%</span>`:''}</td>`)+
+    row('着地見込',a=>`<td class="tnum ${a.projpace==null?'idle':a.projpace>=115?'ov':a.projpace<85?'un':'good'}">${a.projpace==null?'—':a.projpace.toFixed(0)+'%'}</td>`)+
+    row('CV',a=>`<td class="tnum">${a.cv||0}</td>`)+
+    row('CPA',a=>`<td class="tnum">${a.cpa?yen(a.cpa):'—'}</td>`)+
+    '</tbody>';
+  document.getElementById('tblB').innerHTML=head+body;
+}
+function setMode(m){mode=m;document.getElementById('mPace').classList.toggle('on',m==='pace');document.getElementById('mName').classList.toggle('on',m==='name');renderA();}
+function setView(v){
+  const a=v==='A';
+  document.getElementById('btnA').classList.toggle('on',a);
+  document.getElementById('btnB').classList.toggle('on',!a);
+  document.getElementById('viewA').classList.toggle('hide',!a);
+  document.getElementById('viewB').classList.toggle('hide',a);
+  document.getElementById('sortSeg').style.display=a?'':'none';
+  document.getElementById('sortLbl').style.display=a?'':'none';
+  location.hash=a?'table':'board';
+}
+document.getElementById('foot').innerHTML='判定ロジック: 消化率 = 当月消化 ÷ 月予算。日次ペース = 当月消化 ÷ 理想消化（月予算 × 経過日数/当月日数）。±15%以内＝適正・±15〜30%＝注意・±30%超＝暴発/大幅不足。着地見込 = 当月消化 ÷ 経過日数 × 当月日数 を月予算で割った想定着地率。'+
+  'しきい値は調整可。媒体別（Meta/Google/…）の内訳は、媒体別の予算・日次消化データ連携後に対応予定。';
+renderA();renderB();
+setView(location.hash==='#table'?'A':'B');
+</script>
+</body>
+</html>
